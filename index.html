@@ -14,7 +14,7 @@
         <h3>Store Your Messages in The Blockchain</h3>
         <br />
         
-            <div id="xbalance"></div>
+            <div id="geMessage"></div>
             <b>Write Your Message:</b></td>
                 
             <input id="write" placeholder="Write Something..." type="text" />
@@ -69,18 +69,18 @@ function getvalue() {
         var contractaddress = '0x06d2e0e43b73eefdf8bccc5f9a9a6cc92a3b7dd9';
         //instantiate and connect to contract address via Abi
         var myAbi = web3.eth.contract(abi);
-        var myfunction = myAbi.at(contractaddress);
+        var contract = myAbi.at(contractaddress);
         //call the get function of our SimpleStorage contract
-        myfunction.get.call(function (err, xname) {
+        contract.get.call(function (err, xname) {
             if (err) { console.log(err) }
             if (xname) {
                 //display value on the webpage
-                document.getElementById("xbalance").innerHTML = "Previously Stored Message: " + xname;
+                document.getElementById("getMessage").innerHTML = "Previously Stored Message: " + xname;
             }
         });
     }
     catch (err) {
-        document.getElementById("xbalance").innerHTML = err;
+        document.getElementById("getMessage").innerHTML = err;
     }
 }
 
@@ -122,9 +122,9 @@ function setvalue() {
         var contractaddress = '0x06d2e0e43b73eefdf8bccc5f9a9a6cc92a3b7dd9';
         //instantiate and connect to contract address via Abi
         var myAbi = web3.eth.contract(abi);
-        var myfunction = myAbi.at(contractaddress);
+        var contract = myAbi.at(contractaddress);
         //call the set function of our SimpleStorage contract
-        myfunction.set.sendTransaction(document.getElementById("write").value, { from: web3.eth.accounts[0], gas: 4000000 }, function (error, result) {
+        contract.set.sendTransaction(document.getElementById("write").value, { from: web3.eth.accounts[0], gas: 4000000 }, function (error, result) {
             if (!error) {
                 console.log(result);
             } else {
@@ -132,7 +132,7 @@ function setvalue() {
             }
         })
     } catch (err) {
-        document.getElementById("xvalue").innerHTML = err;
+        document.getElementById("write").innerHTML = err;
     }
 }
 
