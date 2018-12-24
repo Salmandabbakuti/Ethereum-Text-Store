@@ -26,7 +26,7 @@ window.onload = function () {
 // check to see if user has metamask addon installed on his browser. check to make sure web3 is defined
 if (typeof web3 === 'undefined') {
 document.getElementById('metamask').innerHTML = 'You need <a href="https://metamask.io/">MetaMask</a> browser plugin to run this example'
-}
+window.alert("You need Metamask Extension to run this Dapp")
 // call the getvalue function here
 getvalue();
 }
