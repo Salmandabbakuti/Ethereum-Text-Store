@@ -31,12 +31,7 @@ window.alert("You need Metamask Extension to run this Dapp")
     }
 getvalue();
 }
-
-//function to retrieve the last inserted value on the blockchain
-function getvalue() {
-    try {
-        // contract Abi defines all the variables,constants and functions of the smart contract. replace with your own abi
-        var abi = [
+var abi = [
     {
         "constant": false,
         "inputs": [
@@ -66,6 +61,17 @@ function getvalue() {
         "type": "function"
     }
 ]
+//contract address. please change the address to your own
+        var contractaddress = '0x06d2e0e43b73eefdf8bccc5f9a9a6cc92a3b7dd9';
+        //instantiate and connect to contract address via Abi
+        var myAbi = web3.eth.contract(abi);
+        var contract = myAbi.at(contractaddress);
+
+//function to retrieve the last inserted value on the blockchain
+function getvalue() {
+    try {
+        // contract Abi defines all the variables,constants and functions of the smart contract. replace with your own abi
+        
         //contract address. please change the address to your own
         var contractaddress = '0x06d2e0e43b73eefdf8bccc5f9a9a6cc92a3b7dd9';
         //instantiate and connect to contract address via Abi
@@ -84,42 +90,10 @@ function getvalue() {
         document.getElementById("getMessage").innerHTML = err;
     }
 }
-
 // function to add a new integer value to the blockchain
 function setvalue() {
     try {
-        // contract Abi defines all the variables,constants and functions of the smart contract. replace with your own abi
-        var abi = [
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "x",
-                "type": "string"
-            }
-        ],
-        "name": "set",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "get",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    }
-]
-        //contract address. please change the address to your own
+     //contract address. please change the address to your own
         var contractaddress = '0x06d2e0e43b73eefdf8bccc5f9a9a6cc92a3b7dd9';
         //instantiate and connect to contract address via Abi
         var myAbi = web3.eth.contract(abi);
@@ -136,7 +110,6 @@ function setvalue() {
         document.getElementById("write").innerHTML = err;
     }
 }
-
     </script>
 </body>
 </html>
