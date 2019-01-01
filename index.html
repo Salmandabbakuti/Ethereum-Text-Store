@@ -70,14 +70,6 @@ var abi = [
 //function to retrieve the last inserted value on the blockchain
 function getvalue() {
     try {
-        // contract Abi defines all the variables,constants and functions of the smart contract. replace with your own abi
-        
-        //contract address. please change the address to your own
-        var contractaddress = '0x06d2e0e43b73eefdf8bccc5f9a9a6cc92a3b7dd9';
-        //instantiate and connect to contract address via Abi
-        var myAbi = web3.eth.contract(abi);
-        var contract = myAbi.at(contractaddress);
-        //call the get function of our SimpleStorage contract
         contract.get.call(function (err, xname) {
             if (err) { console.log(err) }
             if (xname) {
@@ -93,12 +85,6 @@ function getvalue() {
 // function to add a new integer value to the blockchain
 function setvalue() {
     try {
-     //contract address. please change the address to your own
-        var contractaddress = '0x06d2e0e43b73eefdf8bccc5f9a9a6cc92a3b7dd9';
-        //instantiate and connect to contract address via Abi
-        var myAbi = web3.eth.contract(abi);
-        var contract = myAbi.at(contractaddress);
-        //call the set function of our SimpleStorage contract
         contract.set.sendTransaction(document.getElementById("write").value, { from: web3.eth.accounts[0], gas: 4000000 }, function (error, result) {
             if (!error) {
                 console.log(result);
